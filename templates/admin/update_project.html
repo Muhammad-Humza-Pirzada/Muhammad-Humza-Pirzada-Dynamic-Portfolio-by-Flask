@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+    Update Project
+{% endblock %}
+
+{% block body %}
+           <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper  register-right " style='background-image: linear-gradient(to right top, white, #dbdcda);'>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ">
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 ">
+                    
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
+                    <form class="p-4" method="post" enctype="multipart/form-data">
+                        <h2>Edit Project</h2>
+            
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <input type="text" name="p_name" class="form-control" id="inputEmail4" value="{{u_project.project_name}}" placeholder="Project Name">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <input type="text" name="p_title" class="form-control" id="inputEmail4" value="{{u_project.project_title}}"  placeholder="Project Title">
+                          </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <textarea class="form-control" id="textAreaExample1" rows="4" name="p_description">{{u_project.project_desc}}</textarea>
+                            <label class="form-label" for="textAreaExample" >Message</label>
+                        </div>
+
+                        <div class="form-group">
+                            <img class="card-img-top" width="300" height="300" src="{{ url_for('static', filename='assets/img/' + u_project.project_img) }}" alt="Card image" >
+                        </div>
+
+                        <div class="form-group">
+                            <div class="mb-3">
+                                <label for="formFileMultiple" class=" ">Multiple files input example</label>
+                                <input class="form-control" type="file" accept="image/*" name="p_img" id="formFileMultiple" multiple>
+                            </div>
+                        </div>
+                      
+                      
+                        <input type="submit" class="btn btn-primary" value='Update Project' />
+                    </form>
+                    
+                  
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      
+{% endblock %}
+

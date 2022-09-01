@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+    My Project
+{% endblock %}
+
+{% block body %}
+<div class="content-wrapper " >
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    
+    <div class="container-fluid">
+      {% with del_pro = get_flashed_messages() %}
+        {% if del_pro %}
+          {% for pro_del in del_pro %}
+          <div id="alert" class="alert alert-danger">
+            {{pro_del}}
+          </div>
+      
+          <script type="text/javascript">
+              setTimeout(function () {
+        
+                  // Closing the alert
+                  $('#alert').alert('close');
+              }, 5000);
+          </script>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <div class="row">
+        {% for proj_data in my_items  %}
+
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 ">
+          <div class="container " >
+            
+            <!--  <h2>Card Image</h2>
+            <p>Image at the top (card-img-top):</p>-->
+            <div class="card shadow-lg" style='background-image: linear-gradient(to right top, white, #dbdcda);' >
+              <h4>{{loop.index}}. {{proj_data.project_name}}</h4>
+              <a href="{{ url_for('static', filename='assets/img/' + proj_data.project_img) }}" target='_blank'>
+                <img class="card-img-top" height="300" src="{{ url_for('static', filename='assets/img/' + proj_data.project_img) }}" alt="Card image" >
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><strong>Project Title! &ensp;</strong>{{proj_data.project_title}}</h5>
+                
+                <br />
+                <strong>Project Description!</strong>
+                
+                <p class="card-text">{{proj_data.project_desc}}</p>
+                <a href="/update_project/{{proj_data.s_no}}" class="btn btn-secondary w-25">Edit</a>
+                <!--<a href="/delete_project/{{proj_data.s_no}}" class="btn btn-danger float-right">Delete</a>-->
+                <button type="button" class="btn btn-outline-danger pl-5 pr-5 float-right " data-toggle="modal" data-target="#myModal">Delete</button>
+                      
+                      <div class="container ">
+                        <!-- Trigger the modal with a button -->
+                      
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                          <div class="modal-dialog ">
+                          
+                            <!-- Modal content-->
+                            <div class="modal-content ">
+                              
+                              <div class="alert alert-danger">
+                                <strong>Delete!</strong> Are You Sure Want To Delete your Project?
+                              </div>
+
+                              <div class="modal-body">
+                                <p>Make Sure After Deleteing You will not be able to recover your Project.</p>
+                              </div>
+                              
+                              <div class="inline-block p-4">
+                                <a href="/delete_project/{{proj_data.s_no}}" class="btn btn-danger float-right">Delete</a>
+                              
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        
+                      </div>
+
+              </div>
+            </div>
+
+          </div> 
+        </div>
+        {% endfor %}
+      </div>
+        
+
+    {% with update_pro = get_flashed_messages() %}
+      {% if update_pro %}
+        {% for pro_update in update_pro %}
+          <div id="simpleModal" class="modal fade in" tabindex="-1" role="dialog">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{full_name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{pro_update}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thank You!</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+  
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+      
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+    About Me
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+    <div class="content-wrapper" style='background-image: linear-gradient(to right top, white, #dbdcda);' >
+        <!-- Content Header (Page header) -->
+       
+            <div class="container-fluid register">   
+                <div class="container ">
+                    <div class="row">
+                       
+                        <div class="col-md-12 register-right">
+                            <div class="" id="">
+                                <div class="" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <h3 class="register-heading">About Me / Profile</h3>
+                                    <h3 class="register-heading">Update</h3>
+                                    <form method='post' enctype="multipart/form-data">
+                                        <div class="row register-form">
+                                            <div class="col-md-6">
+                                                
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="f_name" placeholder="User Name *" value="{{about_me.full_name}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="p_number" placeholder="Phone Number *" value="{{about_me.phone}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="city" placeholder="City *" value="{{about_me.city}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="z_code" placeholder="Zip Code *" value="{{about_me.z_code}}" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="maxl">
+                                                        <div class="custom-file mb-3">
+                                                            <input type="file" accept="image/*" name="about_img" class="custom-file-input" id="customFile" multiple>
+                                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="maxl">
+                                                        <div class="custom-file mb-3">
+                                                            <a href="{{ url_for('static', filename='assets/img/' + about_me.a_image) }}" target="_blank">
+                                                                <img class="card-img border rounded border-dark" width="300" height="300" src="{{ url_for('static', filename='assets/img/' + about_me.a_image) }}" alt="Card image" >
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" name="email" placeholder="Your Email *" value="{{about_me.email}}" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" name="pass" placeholder="Password *" value="{{about_me.password}}" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="country" placeholder="Country *" value="{{about_me.country}}" />
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="c_code" placeholder="Country Code *" value="{{about_me.c_code}}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="maxl ">
+                                                        
+                                                        {% if about_me.gender == 'male' %}
+
+                                                            <label class="radio inline"> 
+                                                                <input type="radio" name="gender" value="male" checked='checked' />
+                                                                <span> Male </span> 
+                                                            </label>
+                                                            <label class="radio inline"> 
+                                                                <input type="radio" name="gender" value="female" />
+                                                                <span>Female </span> 
+                                                            </label>
+                                                        
+                                                        {% else %}
+
+                                                            <label class="radio inline "> 
+                                                                <input type="radio" name="gender" value="male" />
+                                                                <span> Male </span> 
+                                                            </label>
+                                                            <label class="radio inline"> 
+                                                                <input type="radio" name="gender" value="female" checked='checked' />
+                                                                <span>Female </span> 
+                                                            </label>
+
+                                                        {% endif %}    
+
+                              
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <textarea class="form-control" name="about_desc" rows="10" col="100"  placeholder="Write About Yourself *" value="">{{about_me.a_desc}}</textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                   <input type="submit" class="btnRegister"  value="Add Info About You"/>
+                                                </div>
+                                              
+                                            </div>
+                                        </div>
+                                    
+                              
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+       
+    </div>
+
+    {% with update_msg = get_flashed_messages() %}
+    {% if update_msg %}
+      {% for message_up in update_msg %}
+        <div id="simpleModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog " role="document">
+              <div class="modal-content bg-secondary fade-in">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Wellcome! {{full_name}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      {{message_up}}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Thank You!</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}   
+
+

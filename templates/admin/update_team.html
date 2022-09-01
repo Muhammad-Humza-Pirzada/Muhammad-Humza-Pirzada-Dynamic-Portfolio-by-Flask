@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+    Update Team
+{% endblock %}
+
+{% block body %}
+           <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header " style='background-image: linear-gradient(to right top, white, #dbdcda, #dbdcda);'>
+        <div class="container-fluid shadow-lg" >
+          <h1 class="mb-3">Update Team Member</h1>
+            <form method="post" enctype="multipart/form-data" class="p-2 rounded">
+          
+                <div class="form-row">
+
+                  <div class="form-group col-md-4 col-lg-4">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="team_name" value="{{ u_team.team_name }}" class="form-control" placeholder="First Name">
+                  </div>
+
+                  <div class="form-group col-md-4 col-lg-4">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="team_lname" value="{{ u_team.team_lname}}" class="form-control" placeholder="Last Name">
+                  </div>
+
+                  <div class="form-group col-md-4 col-lg-4">
+                    <label for="email">Email</label>
+                    <input type="email" name="team_email" value="{{u_team.team_email}}" class="form-control"  placeholder="Email">
+                  </div>
+                </div>
+              
+                <div class="form-row">
+
+                  <div class="form-group col-md-6 col-lg-6">
+                    <label for="skills">Skills</label>
+                    <input type="text" name="team_skills" value="{{u_team.team_skills}}" class="form-control" >
+                  </div>
+
+                  <div class="form-group col-md-3 col-lg-3">
+                    <label for="country">Country</label>
+                    <select  name="country"  class="form-control">
+                      <option value="{{u_team.country}}" selected>Choose...</option>
+                      <option value="pakistan">Pakistan</option>
+                      <option value="india">India</option>
+                      <option value="saudi">Saudia Arabia</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-3 col-lg-3">
+                    <label for="gender">Gender</label>
+                    <br />
+                    {% if u_team.gender == 'male' %}
+
+                        <input type="radio" name="gender" value="male" checked="checked" class="form-group" >Male
+                        &emsp;
+                        <input type="radio" name="gender" value="female"  class="form-group" >Female
+                        &emsp;
+                    {% elif u_team.gender == 'female' %}
+                        <input type="radio" name="gender" value="male"  class="form-group" >Male
+                        &emsp;
+                        <input type="radio" name="gender" value="female" checked="checked" class="form-group" >Female
+                    
+                    {% endif %}
+                </div>
+
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4 col-lg-4">
+                    <a href="{{ url_for('static', filename='assets/img/' + u_team.team_image) }}" target="_blank">
+                        <img class="card-img-top" width="300" height="300" src="{{ url_for('static', filename='assets/img/' + u_team.team_image) }}" alt="Card image" >
+                    </a>
+                </div>
+
+                  <div class="form-group col-md-4 col-lg-4" style="margin-top: 220px">
+                    <p class="text-dark font-weight-bold">Select Image:</p>
+                    <div class="custom-file mb-3">
+                      <input type="file" accept="image/*" name="team_image" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  
+                  </div>
+                  
+                  <div class="form-group col-md-4 col-lg-4"  style="margin-top: 228px">
+                    <label for="">Update Team Member</label>
+                    <input type="submit"class="form-control btn-outline-secondary" value="Add Team Member" >
+                  </div>
+
+                </div>
+                
+              </div>
+          
+            </form>
+          
+        
+
+        
+        </div>
+    </div>
+</div>
+ 
+{% endblock %}
+
